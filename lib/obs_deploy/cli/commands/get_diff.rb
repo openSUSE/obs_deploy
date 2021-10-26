@@ -8,7 +8,7 @@ module ObsDeploy
         option :url, type: :string, default: 'https://api.opensuse.org', desc: 'API url'
         option :package, type: :string, default: 'obs-api', desc: 'Package name'
         option :project, type: :string, default: 'OBS:Server:Unstable', desc: 'Project name'
-        option :product, type: :string, default: 'SLE_15_SP3', desc: 'Product name'
+        option :product, type: :string, default: '15.3', desc: 'Product name'
         option :architecture, type: :string, default: 'x86_64', desc: 'Architecture'
         option :ignore_certificate, aliases: ['k'], type: :bool, default: false, desc: 'Ignore invalid or self-signed SSL certificates'
 

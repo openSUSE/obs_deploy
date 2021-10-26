@@ -11,7 +11,7 @@ RSpec.describe ObsDeploy::CheckDiff do
   describe '#package_url' do
     subject { check_diff.package_url.to_s }
     context 'default parameter' do
-      let(:url) { 'https://api.opensuse.org/public/build/OBS:Server:Unstable/SLE_15_SP3/x86_64/obs-server' }
+      let(:url) { 'https://api.opensuse.org/public/build/OBS:Server:Unstable/15.3/x86_64/obs-server' }
       it { expect(subject).to eq(url) }
     end
 
