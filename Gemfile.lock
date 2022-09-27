@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    obs_deploy (0.4.0)
+    obs_deploy (0.4.1)
       cheetah
       dry-cli
       git_diff_parser
