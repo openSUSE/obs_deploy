@@ -18,5 +18,8 @@ jobs:
           name: Bundle install
           command: bundle install
       - run:
+          name: Run linters
+          command: bundle exec rubocop
+      - run:
           name: Run spec
           command: bundle exec rake spec
