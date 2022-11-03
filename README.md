@@ -3,11 +3,7 @@
 Simple tool to deploy OBS via zypper to our reference server
 
 ## Build Status
-[![CircleCI](https://circleci.com/gh/vpereira/obs_deploy.svg?style=svg)](https://app.circleci.com/pipelines/github/vpereira/obs_deploy)
-
-## Codebeat
-[![codebeat badge](https://codebeat.co/badges/767d7e65-0364-4386-a26e-99ad228dfe31)](https://codebeat.co/projects/github-com-vpereira-obs_deploy-master)
-
+[![CircleCI](https://circleci.com/gh/openSUSE/obs_deploy.svg?style=svg)](https://app.circleci.com/pipelines/github/openSUSE/obs_deploy)
 
 ## Installation
 
@@ -96,4 +92,4 @@ and push it to build service
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/vpereira/obs_deploy.
+Bug reports and pull requests are welcome on GitHub at https://github.com/openSUSE/obs_deploy.
