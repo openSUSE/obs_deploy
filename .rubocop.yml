@@ -11,6 +11,7 @@
 
 AllCops:
   NewCops: enable
+  TargetRubyVersion: 3.1
 
 Metrics/BlockLength:
   Enabled: false
@@ -19,4 +20,7 @@ Layout/LineLength:
   Enabled: false
 
 Style/Documentation:
+  Enabled: false
+
+Style/SelectByRegexp: # Prefer grep to select with a regexp match
   Enabled: false

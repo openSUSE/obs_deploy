@@ -17,7 +17,7 @@ module ObsDeploy
     end
 
     def run(cmd)
-      Cheetah.run(build_command + cmd, logger: logger)
+      Cheetah.run(build_command + cmd, logger:)
     end
 
     private
@@ -44,7 +44,7 @@ module ObsDeploy
     end
 
     def logger
-      Logger.new(STDOUT, level: logger_level, formatter: logger_formatter)
+      Logger.new($stdout, level: logger_level, formatter: logger_formatter)
     end
 
     def logger_level

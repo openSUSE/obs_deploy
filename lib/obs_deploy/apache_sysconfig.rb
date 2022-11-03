@@ -9,19 +9,19 @@ module ObsDeploy
     end
 
     def enable_maintenance_mode
-      unless maintenance_mode?
-        content = File.read(path).gsub(/^#{server_flags}="STATUS"$/,
-                                       apache_status_line(maintenance))
-        write_apache_sysconfig(content)
-      end
+      return if maintenance_mode?
+
+      content = File.read(path).gsub(/^#{server_flags}="STATUS"$/,
+                                     apache_status_line(maintenance))
+      write_apache_sysconfig(content)
     end
 
     def disable_maintenance_mode
-      if maintenance_mode?
-        content = File.read(path).gsub(/^#{server_flags}="STATUS MAINTENANCE"/,
-                                       apache_status_line(no_maintenance))
-        write_apache_sysconfig(content)
-      end
+      return unless maintenance_mode?
+
+      content = File.read(path).gsub(/^#{server_flags}="STATUS MAINTENANCE"/,
+                                     apache_status_line(no_maintenance))
+      write_apache_sysconfig(content)
     end
 
     def maintenance_mode?

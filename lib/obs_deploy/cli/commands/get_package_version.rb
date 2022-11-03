@@ -17,7 +17,7 @@ module ObsDeploy
             OpenSSL::SSL.const_set(:VERIFY_PEER, OpenSSL::SSL::VERIFY_NONE)
           end
 
-          puts "Available package: #{ObsDeploy::CheckDiff.new(server: url, product: product).package_version}"
+          puts "Available package: #{ObsDeploy::CheckDiff.new(server: url, product:).package_version}"
         end
       end
     end

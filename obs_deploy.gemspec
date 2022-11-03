@@ -13,6 +13,8 @@ Gem::Specification.new do |spec|
   spec.summary       = 'OBS Deployment tool'
   spec.homepage      = 'https://openbuildservice.org'
 
+  spec.required_ruby_version = '>= 3.1.0'
+
   spec.metadata['allowed_push_host'] = 'https://rubygems.org'
 
   spec.metadata['homepage_uri'] = spec.homepage
@@ -37,4 +39,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'dry-cli'
   spec.add_dependency 'git_diff_parser'
   spec.add_dependency 'nokogiri'
+  spec.metadata['rubygems_mfa_required'] = 'true'
 end
