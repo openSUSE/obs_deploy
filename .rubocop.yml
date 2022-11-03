@@ -9,10 +9,6 @@
 #
 # See https://github.com/rubocop-hq/rubocop/blob/master/manual/configuration.md
 
-AllCops:
-  Exclude:
-    - 'dist/rubygem-obs_deploy.spec'
-
 Metrics/BlockLength:
   Enabled: false
 

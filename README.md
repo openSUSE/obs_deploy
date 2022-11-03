@@ -13,13 +13,6 @@ Just run:
 gem install obs_deploy
 ```
 
-or
-
-```
-zypper ar https://download.opensuse.org/repositories/home:/vpereirabr/openSUSE_Tumbleweed/home:vpereirabr.repo
-zypper in  ruby2.6-rubygem-obs_deploy
-```
-
 ## Usage
 
 
@@ -80,15 +73,6 @@ $ obs_deploy refresh-repositories --host=$APPLIANCE_IP
 If you want to add new command to the cli, please read the `dry-cli` documentation https://dry-rb.org/gems/dry-cli/0.4/. The commands are in the `obs_deploy/cli/commands` directory.
 
 The commands are being sent via ssh and ssh is being called via `cheetah` https://github.com/openSUSE/cheetah. Please Read the `ssh.rb` file, specially the `SSH#run` method
-
-## RPM Building
-
-Under dist/ we have the necessary files to use to build the gem as rpm. The
-`_service` still not used. Mainly because we need either to build the rubygem
-dependencies or use https://github.com/openSUSE/obs-service-bundle_gems
-
-Today as it is, you have to push the gem to rubygems and then generate the spec
-and push it to build service
 
 ## Contributing
 
