@@ -9,6 +9,9 @@
 #
 # See https://github.com/rubocop-hq/rubocop/blob/master/manual/configuration.md
 
+AllCops:
+  NewCops: enable
+
 Metrics/BlockLength:
   Enabled: false
 
