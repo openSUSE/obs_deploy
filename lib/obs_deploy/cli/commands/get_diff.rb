@@ -17,7 +17,7 @@ module ObsDeploy
             OpenSSL::SSL.send(:remove_const, :VERIFY_PEER)
             OpenSSL::SSL.const_set(:VERIFY_PEER, OpenSSL::SSL::VERIFY_NONE)
           end
-          puts "diff : #{ObsDeploy::CheckDiff.new(server: url, project: project, product: product).github_diff}"
+          puts "diff : #{ObsDeploy::CheckDiff.new(server: url, project:, product:).github_diff}"
         end
       end
     end

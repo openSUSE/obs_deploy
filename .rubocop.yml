@@ -9,14 +9,18 @@
 #
 # See https://github.com/rubocop-hq/rubocop/blob/master/manual/configuration.md
 
+AllCops:
+  NewCops: enable
+  TargetRubyVersion: 3.1
+
 Metrics/BlockLength:
   Enabled: false
 
 Layout/LineLength:
   Enabled: false
 
-Layout/LineLength:
+Style/Documentation:
   Enabled: false
 
-Style/Documentation:
+Style/SelectByRegexp: # Prefer grep to select with a regexp match
   Enabled: false

@@ -31,26 +31,26 @@ module ObsDeploy
       obs_running_commit != package_commit
     end
 
-    def has_migration?
+    def migration?
       return true if github_diff.nil? || github_diff.empty?
 
       GitDiffParser.parse(github_diff).files.any? { |f| f.match?(%r{db/migrate}) }
     end
 
-    def has_data_migration?
+    def data_migration?
       return true if github_diff.nil? || github_diff.empty?
 
       GitDiffParser.parse(github_diff).files.any? { |f| f.match?(%r{db/data}) }
     end
 
     def data_migrations
-      return [] unless has_data_migration?
+      return [] unless data_migration?
 
       GitDiffParser.parse(github_diff).files.select { |f| f =~ %r{db/data} }
     end
 
     def migrations
-      return [] unless has_migration?
+      return [] unless migration?
 
       GitDiffParser.parse(github_diff).files.select { |f| f =~ %r{db/migrate} }
     end
