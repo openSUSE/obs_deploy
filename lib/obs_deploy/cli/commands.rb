@@ -12,6 +12,7 @@ module ObsDeploy
       autoload :Systemctl, File.join(__dir__, 'commands/systemctl.rb')
       autoload :GetPendingMigration, File.join(__dir__, 'commands/get_pending_migration.rb')
       autoload :GetDiff, File.join(__dir__, 'commands/get_diff.rb')
+      autoload :GetMonkeyPatch, File.join(__dir__, 'commands/get_monkey_patch.rb')
 
       # register the commands and its command line
       register 'available-package', GetPackageVersion, aliases: ['ap']
@@ -21,6 +22,7 @@ module ObsDeploy
       register 'systemctl', Systemctl, aliases: ['sys']
       register 'pending-migrations', GetPendingMigration, aliases: ['pm']
       register 'check-diff', GetDiff, aliases: ['cd']
+      register 'monkey-patch', GetMonkeyPatch, aliases: ['mp']
     end
   end
 end
