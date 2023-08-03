@@ -17,5 +17,5 @@ require 'tempfile'
 module ObsDeploy
   class Error < StandardError; end
 
-  DEFAULT_PRODUCT = '15.4'
+  DEFAULT_PRODUCT = '15.5'
 end
