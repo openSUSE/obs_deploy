@@ -43,12 +43,6 @@ module ObsDeploy
       GitDiffParser.parse(github_diff).files.any? { |f| f.match?(%r{db/data}) }
     end
 
-    def data_migrations
-      return [] unless data_migration?
-
-      GitDiffParser.parse(github_diff).files.select { |f| f =~ %r{db/data} }
-    end
-
     def migrations
       return [] unless migration?
 
