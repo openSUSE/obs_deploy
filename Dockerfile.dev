@@ -1,7 +1,7 @@
 FROM opensuse/tumbleweed
 
 RUN zypper --gpg-auto-import-keys refresh
-RUN zypper install -y openssh vim iputils ruby3.1 ruby3.1-devel ruby3.1-rubygem-cheetah ruby3.1-rubygem-nokogiri
+RUN zypper install -y openssh vim iputils ruby3.4 ruby3.4-devel ruby3.4-rubygem-cheetah ruby3.4-rubygem-nokogiri
 RUN gem install git_diff_parser dry-cli
 
 COPY entrypoint.sh /entrypoint.sh
