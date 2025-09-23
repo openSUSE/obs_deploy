@@ -4,6 +4,7 @@ module ObsDeploy
   module CLI
     module Commands
       extend Dry::CLI::Registry
+
       autoload :Version, File.join(__dir__, 'commands/version.rb')
       autoload :RefreshRepositories, File.join(__dir__, 'commands/refresh_repositories.rb')
       autoload :Deploy, File.join(__dir__, 'commands/deploy.rb')
