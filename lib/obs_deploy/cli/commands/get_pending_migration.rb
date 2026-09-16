@@ -10,7 +10,7 @@ module ObsDeploy
         option :ignore_certificate, aliases: ['k'], type: :boolean, default: false, desc: 'Ignore invalid or self-signed SSL certificates'
 
         # FIXME: Refactor this method
-        # rubocop:disable Metrics/MethodLength
+        # rubocop:disable-next Metrics/MethodLength
         def call(url:, targeturl:, ignore_certificate:, **)
           if ignore_certificate
             OpenSSL::SSL.send(:remove_const, :VERIFY_PEER)
@@ -27,7 +27,6 @@ module ObsDeploy
             exit(1)
           end
         end
-        # rubocop:enable Metrics/MethodLength
       end
     end
   end
