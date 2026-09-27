@@ -49,6 +49,12 @@ module ObsDeploy
       GitDiffParser.parse(github_diff).files.select { |f| f =~ %r{db/migrate} }
     end
 
+    def data_migrations
+      return [] unless data_migration?
+
+      GitDiffParser.parse(github_diff).files.select { |f| f =~ %r{db/data} }
+    end
+
     def package_url
       URI("#{@server}/public/build/#{@project}/#{@product}/x86_64/obs-server")
     end

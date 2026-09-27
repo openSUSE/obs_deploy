@@ -18,12 +18,14 @@ module ObsDeploy
           end
 
           migrations = ObsDeploy::CheckDiff.new(server: url, target_server: targeturl).migrations
+          data_migrations = ObsDeploy::CheckDiff.new(server: url, target_server: targeturl).data_migrations
 
-          if migrations.empty?
+          if migrations.empty? && data_migrations.empty?
             puts 'No pending migrations'
             exit(0)
           else
-            puts migrations
+            puts migrations if migrations
+            puts data_migrations if data_migrations
             exit(1)
           end
         end
