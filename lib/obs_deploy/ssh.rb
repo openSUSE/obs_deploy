@@ -17,7 +17,7 @@ module ObsDeploy
     end
 
     def run(cmd)
-      Cheetah.run(build_command + cmd, logger:)
+      Cheetah.run(build_command + cmd, logger:, stdout: :capture)
     end
 
     private

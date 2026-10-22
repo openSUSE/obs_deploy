@@ -2,25 +2,24 @@
 
 module ObsDeploy
   class CheckDiff
-    def initialize(server: 'https://api.opensuse.org', product: ObsDeploy::DEFAULT_PRODUCT, project: 'OBS:Server:Unstable', target_server: 'https://api.opensuse.org')
-      @server = server
-      @product = product
-      @project = project
-      @target_server = target_server
-    end
+    VERSION_REGEX = /.*\..*\..*\.(.*)-.*/
+    INFO_PROVIDERS = [ObsDeploy::ApiInfo, ObsDeploy::SshInfo]
 
-    def package_version
-      doc = Nokogiri::XML(Net::HTTP.get(package_url))
-      doc.xpath("//binary[starts-with(@filename, 'obs-api')]/@filename").to_s
+    def initialize(ssh_config, api_config)
+      configs = [api_config, ssh_config]
+      INFO_PROVIDERS.zip(configs).each do |provider, config|
+        next unless provider.available?(**config)
+        @provider = provider.new(**config)
+        break
+      end
     end
 
     def package_commit
-      package_version.match(/obs-api-.*\..*\..*\.(.*)-.*\.rpm/).captures.first
+      @provider.available_version
     end
 
     def obs_running_commit
-      doc = Nokogiri::XML(Net::HTTP.get(about_url))
-      doc.xpath('//commit/text()').to_s
+      @provider.deployed_version
     end
 
     def github_diff
@@ -47,14 +46,6 @@ module ObsDeploy
       return [] unless migration?
 
       GitDiffParser.parse(github_diff).files.select { |f| f =~ %r{db/migrate} }
-    end
-
-    def package_url
-      URI("#{@server}/public/build/#{@project}/#{@product}/x86_64/obs-server")
-    end
-
-    def about_url
-      URI("#{@target_server}/about")
     end
   end
 end
