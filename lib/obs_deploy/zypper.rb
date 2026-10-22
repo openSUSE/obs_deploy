@@ -32,6 +32,10 @@ module ObsDeploy
       run %w[zypper locks] + package_name
     end
 
+    def info
+      run %w[zypper --no-color info] + package_name
+    end
+
     private
 
     def run(params)

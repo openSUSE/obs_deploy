@@ -1,23 +1,26 @@
 # frozen_string_literal: true
 
-require 'openssl'
 module ObsDeploy
   module CLI
     module Commands
       class GetPendingMigration < Dry::CLI::Command
-        option :url, type: :string, default: 'https://api.opensuse.org', desc: 'where the packages are available to be installed'
-        option :targeturl, type: :string, default: 'https://api.opensuse.org', desc: 'where we actually want to deploy '
-        option :ignore_certificate, aliases: ['k'], type: :boolean, default: false, desc: 'Ignore invalid or self-signed SSL certificates'
+        desc 'Get the pending migrations'
+
+        option :user, type: :string, default: ObsDeploy::DEFAULT_USER, desc: 'User'
+        option :host, type: :string, default: ObsDeploy::DEFAULT_HOST, desc: 'Set the server address'
+        option :port, type: :int, default: ObsDeploy::DEFAULT_PORT, desc: 'Set the server port'
+        option :url, type: :string, default: ObsDeploy::DEFAULT_URL, desc: 'API url'
+        option :package, type: :string, default: ObsDeploy::DEFAULT_PACKAGE, desc: 'Package name'
+        option :source_package, type: :string, default: ObsDeploy::DEFAULT_SOURCE_PACKAGE, desc: 'Source package name'
+        option :project, type: :string, default: ObsDeploy::DEFAULT_PROJECT, desc: 'Project name'
+        option :product, type: :string, default: ObsDeploy::DEFAULT_PRODUCT, desc: 'Product name'
+        option :architecture, type: :string, default: ObsDeploy::DEFAULT_ARCHITECTURE, desc: 'Architecture'
+        option :ignore_certificate, aliases: ['k'], type: :bool, default: false, desc: 'Ignore invalid or self-signed SSL certificates'
 
         # FIXME: Refactor this method
         # rubocop:disable-next Metrics/MethodLength
-        def call(url:, targeturl:, ignore_certificate:, **)
-          if ignore_certificate
-            OpenSSL::SSL.send(:remove_const, :VERIFY_PEER)
-            OpenSSL::SSL.const_set(:VERIFY_PEER, OpenSSL::SSL::VERIFY_NONE)
-          end
-
-          migrations = ObsDeploy::CheckDiff.new(server: url, target_server: targeturl).migrations
+        def call(user:, host:, port:, url:, package:, project:, product:, architecture:, ignore_certificate:, **)
+          migrations = ObsDeploy::CheckDiff.new({user:, host:, port:}, {url:, package:, project:, product:, architecture:, ignore_certificate:}).migrations
 
           if migrations.empty?
             puts 'No pending migrations'
